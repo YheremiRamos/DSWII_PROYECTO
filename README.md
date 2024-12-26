@@ -1,104 +1,22 @@
-# 📦 Gestión de Inventario
+# 📦 Gestión de Usuarios
 
-Este repositorio contiene varios proyectos desarrollados como parte del curso **DSWII**. Cada proyecto corresponde a un tema del curso y está orientado a implementar conceptos clave como sockets, hilos, serialización y servicios web (SOAP y REST) en el contexto de un sistema de gestión de inventarios.
+## 📝 Descripción
+Este repositorio contiene el proyecto de **Gestión de Usuarios**, desarrollado como parte del curso **DSWII**. El sistema está diseñado para gestionar la información de usuarios, roles y permisos, permitiendo un control eficiente del acceso y las operaciones dentro de una plataforma.
 
-## 📝 Descripción del Proyecto
+## 🔍 Objetivos
+El principal objetivo del proyecto es facilitar la administración de usuarios, incluyendo la creación, actualización, eliminación y consulta de datos. Además, se implementan funcionalidades para manejar roles y permisos, asegurando que los usuarios tengan acceso a las funcionalidades adecuadas.
 
-El objetivo es modelar un sistema de inventario que incluye las siguientes entidades básicas:
+## ⚙️ Entidades Principales
+El sistema se basa en las siguientes entidades:
 
-### Entidades principales
+- **Usuario**: Almacena la información básica de cada usuario, incluyendo nombre, correo electrónico y contraseña.
+- **Rol**: Define los roles que pueden ser asignados a los usuarios, como "Administrador" o "Usuario Regular".
+- **Permiso**: Especifica los permisos asociados a cada rol, determinando las acciones que un usuario puede realizar en el sistema.
 
-#### 📄 Inventario
-```java
-public class Inventario {
-    private Long id;
-    private LibroInfo libroInfo; // Información replicada del libro (libroId, tituloLibro, isbnLibro, anioPublicacionLibro)
-    private Integer totalCopias; // Número total de copias físicas disponibles
-    private Integer copiasDisponibles; // Número de copias actualmente disponibles (no prestadas, no dañadas)
-    private LocalDateTime fechaCreacion; // Fecha/hora de creación del registro
-    private LocalDateTime fechaActualizacion; // Última fecha/hora de actualización del registro
+## 🚀 Cómo Empezar
 
-    private List<Copia> copias; // Relación con las copias
-}
-```
-#### 📄 Copia
-```java
-public class Copia {
-    private Long id; // Identificador único de la copia física
-    private LibroInfo libroInfo; // Información replicada del libro
-    private String codigoBarras; // Código interno de la copia, identificador único
-    private EstadoCopia estadoCopia; // Relación con el estado actual de la copia
-    private String ubicacionFisica; // Ubicación física de la copia (ej. "Estante A3", "Bodega", etc.)
-    private LocalDateTime fechaCreacion; // Fecha/hora de creación del registro
-    private LocalDateTime fechaActualizacion; // Última fecha/hora de actualización del registro
-}
-```
-#### 📄 Estado copia
-```java
-public class EstadoCopia {
-    private Long id; // Identificador único del estado de la copia
-    private String nombre; // Nombre descriptivo del estado (ej. "DISPONIBLE", "PRESTADA")
-    private String descripcion; // Descripción más extensa del estado
-    private LocalDateTime fechaCreacion; // Fecha/hora de creación del registro
-    private LocalDateTime fechaActualizacion; // Última fecha/hora de actualización del registro
-}
-```
-#### 📄 LibroInfo
-```java
-@Embeddable
-public class LibroInfo {
-    private Long libroId; // Identificador único del libro
-    private String tituloLibro; // Título del libro
-    private String isbnLibro; // ISBN del libro
-    private Integer anioPublicacionLibro; // Año de publicación del libro
-}
+### Clonar el Repositorio
+Para comenzar a trabajar con el proyecto, clona el repositorio en tu máquina local:
 
-```
-## 👩‍💻 Temas y responsables
-
-Cada link redirigirá a la descarga de su recurso:
-
-| **Integrante** | **Tema asignado**                                                                 |
-|-----------------|-----------------------------------------------------------------------------------|
-| **Basty**       | [DSWII U01 T02 SocketsStreams](https://cibertecedu-my.sharepoint.com/:u:/g/personal/i202030255_cibertec_edu_pe/EYNjHRYeOcVCmN-mui-cq1wB5MX3tx1LlRewQreqmabViA?e=ngIGLH)                   |
-| **Leslie**      | [DSWII U01 T03 Hilos Concurrencia Paralelismo](https://cibertecedu-my.sharepoint.com/:u:/g/personal/i202030255_cibertec_edu_pe/EafXpIkEJgNGho5vKPyzuXEBraCWuJfUvXX2L9V37BGr6g?e=09a1os) |
-| **Leslie**      | [DSWII U01 T04 Archivos Flujos Serialización](https://cibertecedu-my.sharepoint.com/:u:/g/personal/i202030255_cibertec_edu_pe/EcWpzyDX8CVFkRRDzQk-edIBIG08AZVWcYhR7eIacIbNCQ?e=C8bgi4) |
-| **Zarela**      | [DSWII U02 T05 ServicioWebSOAP.zip](https://cibertecedu-my.sharepoint.com/:u:/g/personal/i202030255_cibertec_edu_pe/EZYyML3S2sBEumhOndyQlN4B7PKcwTZOFe6QJ6PzfqcLVA?e=IZ0peC)           |
-| **Zarela**      | [DSWII U02 T07 ServicioWebREST](https://cibertecedu-my.sharepoint.com/:u:/g/personal/i202030255_cibertec_edu_pe/EdsguJ40vEhPkad6NpT9i14BaT66cjFmPjuBW1KUdsFBlQ?e=v9Am5l)                 |
-
-# 🚀 Cómo contribuir
-
-## Paso a paso:
-### 1. Clonar el repositorio:
-Abre tu terminal y clona el repositorio en tu máquina local:
-
-```java
-git clone https://github.com/lesliemarlo/DSWII_PROYECTO.git
-```
-
-### 2. Abrir el proyecto en NetBeans:
-
-- Ve a Apache NetBeans y selecciona la opción "Abrir proyecto".
-- Busca la carpeta donde clonaste el repositorio.
-- Selecciona el proyecto correspondiente al tema que vas a trabajar. Cada carpeta del repositorio contendrá un proyecto independiente que puede abrirse de manera autónoma en NetBeans.
-### 3. Crear tu proyecto si aún no existe:
-
-- Si tu tema no tiene carpeta, crea un proyecto nuevo en NetBeans. Guarda el proyecto en la carpeta del repositorio.
-- Asegúrate de seguir el nombre estándar para las carpetas:
-```java
-Ejemplo: DSWII_U01_T02_SocketsStreams para el tema de sockets y streams.
-Subir los cambios:
-```
-
-❗ No elimines ni modifiques otras carpetas. Sube únicamente los archivos de tu proyecto.
-
-### 🗣 Usa los siguientes comandos para guardar y subir tus cambios:
-```java
-git add .
-git commit -m "Añade [nombre de tu tema]"
-git push origin [Nombre de tu rama]
-```
-
-## 🐱‍🐉 Cómo se espera que esté:
-![image](https://github.com/user-attachments/assets/41655d7d-ec4b-46b5-b994-6429053f28d7)
-
+```bash
+git clone https://github.com/YheremiRamos/DSWII_PROYECTO
